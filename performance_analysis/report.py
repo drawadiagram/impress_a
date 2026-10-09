@@ -33,7 +33,7 @@ def main() -> None:
             sections.append(f"## {name} - FAILED\n\n```\n{traceback.format_exc()}```")
     head = [
         "# IMPRESS-A run performance report",
-        (f"Generated {_dt.datetime.now(_dt.UTC).isoformat(timespec='seconds')} from `{ctx.runs}` "
+        (f"Generated {_dt.datetime.now(_dt.timezone.utc).isoformat(timespec='seconds')} from `{ctx.runs}` "
         f"(jobs {', '.join(ctx.jobs)}), code at `{_commit()}`. "
         f"sacct: {getattr(ctx, 'sacct_source', 'snapshot')}."),
         ("Small-n throughout: intervals, not p-values. S5/S6 show the designs fall into far "

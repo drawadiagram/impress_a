@@ -53,11 +53,19 @@ class Ctx:
 
     @cached_property
     def sacct(self) -> dict:
-        """The snapshot if one was taken, else a live query (empty off-cluster)."""
+        """The snapshot if one was taken, else a live query.
+
+        Off-cluster both come back empty, and `sacct_source` must say so rather than claim a
+        query happened: an export built without `snapshot_sacct.py` is the normal case, and C3
+        reported its absence as `nan%` for as long as the label said "live sacct".
+        """
         from . import snapshot_sacct
-        snap = data.sacct(self.runs)
-        self.sacct_source = "snapshot" if snap else "live sacct"
-        return snap or snapshot_sacct.query(list(self.jobs))
+        if snap := data.sacct(self.runs):
+            self.sacct_source = "snapshot"
+            return snap
+        live = snapshot_sacct.query(list(self.jobs))
+        self.sacct_source = "live sacct" if live else "unavailable"
+        return live
 
     @cached_property
     def specs(self) -> dict:
@@ -160,7 +168,7 @@ def make_ctx(a: argparse.Namespace) -> Ctx:
         work = os.environ.get("WORK_DIR")
         if not work:
             raise SystemExit("set --out or WORK_DIR")
-        out = Path(work) / "analysis" / _dt.datetime.now(_dt.UTC).date().isoformat()
+        out = Path(work) / "analysis" / _dt.datetime.now(_dt.timezone.utc).date().isoformat()
     repo = Path(__file__).resolve().parent.parent
     if out.resolve().is_relative_to(repo) and not out.resolve().is_relative_to(
             repo / "performance_analysis" / "out"):

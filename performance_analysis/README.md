@@ -8,15 +8,39 @@ gitignored.
 ```bash
 source .venv/bin/activate
 pip install -e ".[analysis]"                         # matplotlib, tmtools, scipy, gemmi, biopython
-python -m performance_analysis.snapshot_sacct        # once, on Delta: <runs>/sacct.json
+python -m performance_analysis.snapshot_sacct        # BEFORE exporting - see below
 python -m performance_analysis.report                # all sections -> <out>/report.md
 python -m performance_analysis.s6_seed_audit --out /tmp/x    # any one section on its own
 pytest performance_analysis/tests -q                 # synthetic inputs, no run data needed
 ```
 
 Defaults cover the Tier A/B jobs: 22702568, 22726105 and 22728140 (trust), plus 22684607 and
-22692304 (smoke). Pass `--jobs` and `--runs` to point at others, for example an unpacked export
-on a laptop. Without `sacct.json` the code queries sacct live, which only works on the cluster.
+22692304 (smoke). Pass `--jobs` and `--runs` to point at others.
+
+**`snapshot_sacct` is part of building an export, not part of analysing one.** sacct is reachable
+only on the cluster and its records age out, so an archive exported without `<runs>/sacct.json`
+permanently loses C3's allocation view: queue wait, elapsed, billed GPU time, GPU-busy share, CPU
+efficiency and peak RSS. C3 reports those as unavailable and names the missing file.
+`impress_a_runs_2026-10-08.tar.gz` was built without it, and has since been rebuilt to carry it.
+
+### Off the cluster, from an unpacked export
+
+`WORK_DIR` does not exist off-cluster, so both paths are explicit. Every section reproduces, C3
+included, as long as `sacct.json` sits in the run root beside the job directories.
+
+```bash
+tar -xzf impress_a_runs_<date>.tar.gz -C <somewhere outside the checkout>
+uv venv --python 3.10 <v> && uv pip install --python <v>/bin/python \
+    pandas scipy matplotlib tmtools gemmi biopython pydantic pyyaml pytest
+PYTHONPATH=src <v>/bin/python -m performance_analysis.report \
+    --runs <somewhere>/impress_a_runs --out <somewhere>/analysis
+```
+
+`PYTHONPATH=src` is enough for `data.specs()`; the package itself need not be installed, which
+keeps asyncflow, rhapsody and langgraph out of an analysis-only environment. Do not mix `tmtools`
+into an environment holding a numpy-1.x-built matplotlib — it pulls numpy 2 and the ABI mismatch
+breaks every figure. The export also carries `_trust/cuda.jsonl` as a *sibling* of
+`impress_a_runs/`, outside the run root; no section reads it yet.
 
 ## Inputs, and what they cannot tell you
 
@@ -31,6 +55,10 @@ on a laptop. Without `sacct.json` the code queries sacct live, which only works 
 - **GPU utilisation is not recorded** anywhere in a run. C3 gives an upper bound instead.
 - **Ledger artifact paths are absolute**, and some predate the archive's rename.
   `data.rehome` re-roots them on the job directory.
+- **No substitute denominator for a missing allocation.** `manifest.json` has the campaign's own
+  `started`/`finished`, but billed GPU time is `gpus x allocation elapsed`; using campaign wall
+  time instead would inflate every share by however long the allocation outlived the campaign.
+  C3 reports unavailable rather than guessing.
 
 ## Sections
 

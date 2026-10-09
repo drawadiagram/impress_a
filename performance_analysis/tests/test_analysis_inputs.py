@@ -144,3 +144,26 @@ def test_output_into_the_checkout_is_refused(tmp_path):
     a = common.parser().parse_args(["--runs", str(tmp_path), "--out", str(repo / "results")])
     with pytest.raises(SystemExit):
         common.make_ctx(a)
+
+
+def test_c3_says_sacct_is_unavailable_rather_than_reporting_nan(tmp_path, monkeypatch):
+    """An export built without snapshot_sacct.py used to render "at most nan% of the billed GPU
+    time", because the live query's empty result was still labelled "live sacct"."""
+    from performance_analysis import c3_allocation, snapshot_sacct
+
+    monkeypatch.setattr(snapshot_sacct, "query", lambda jobs: {})
+    _job(tmp_path)
+    log = tmp_path / "22728140_delta-small-molecule-trust" / "campaign.log"
+    log.write_text(_log({"r0001": [("13:10:20,000", "13:11:05,000"),
+                                   ("13:11:06,000", "13:11:16,000")]}))
+    ctx = common.Ctx(tmp_path, tmp_path / "out", ["22728140"])
+    assert ctx.sacct == {}
+    assert ctx.sacct_source == "unavailable"
+
+    md = c3_allocation.analyse(ctx)
+    assert "sacct is unavailable" in md
+    assert "nan" not in md.lower()
+    # the log-derived phases survive; the allocation columns are not shown as empty cells
+    assert "tasks" in md
+    for col in c3_allocation.FROM_SACCT:
+        assert f"| {col} |" not in md

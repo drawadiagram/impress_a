@@ -5,6 +5,12 @@ Phases come from `timeline.phases` (launcher and executor log lines) plus the sa
 run records GPU utilisation: a GPU stage is counted as one GPU fully busy for its wall time,
 which OVERSTATES use (model load and CPU-side work happen inside that time). The GPU share is
 therefore an upper bound.
+
+Everything that needs the allocation itself - queue wait, elapsed, billed GPU seconds, CPU
+efficiency, peak RSS - comes from sacct and from nowhere else. With no snapshot this section
+says so and reports only the log-derived phases. It must not fall back to the manifest's
+campaign wall time: billed GPU time is `gpus x allocation elapsed`, and a campaign that ran
+13 minutes inside a longer allocation would silently inflate every share.
 """
 from __future__ import annotations
 
@@ -16,6 +22,9 @@ from .snapshot_sacct import mem_gb, seconds, tres
 
 PHASES = ["prelaunch", "startup", "lead_in", "tasks", "in_run_gaps", "between_runs",
           "shutdown", "epilogue"]
+# the columns that exist only because sacct does
+FROM_SACCT = ["partition", "gpus", "cpus", "elapsed_s", "queue_s", "task_share", "gpu_s_billed",
+              "gpu_share_max", "cpu_eff", "maxrss_gb", "mem_gb"]
 
 
 def analyse(ctx: Ctx) -> str:
@@ -45,6 +54,9 @@ def analyse(ctx: Ctx) -> str:
         })
     use = pd.DataFrame(rows)
     phases = pd.DataFrame(ph_rows)
+    trust = use[use.job.isin([j for j in ctx.jobs if ctx.timelines[j].runs.shape[0] > 1])]
+    if not acct:
+        use = use.drop(columns=FROM_SACCT)      # otherwise a CSV of NaNs that reads as measured
     ctx.table(use, "c3_utilisation")
     ctx.table(phases, "c3_phases")
 
@@ -60,16 +72,27 @@ def analyse(ctx: Ctx) -> str:
     ax.legend(fontsize=7, frameon=False, ncol=4, loc="upper center", bbox_to_anchor=(.5, -.2))
     img = ctx.figure(fig, "c3_phases")
 
-    trust = use[use.job.isin([j for j in ctx.jobs if ctx.timelines[j].runs.shape[0] > 1])]
-    head = (f"Across the trust jobs, at most **{trust.gpu_share_max.max():.0%}** of the billed "
-            f"GPU time had a GPU task running (one GPU busy, three idle, and less than that once "
-            f"model load is subtracted); tasks fill {trust.task_share.median():.0%} of elapsed; "
-            f"CPU efficiency is {trust.cpu_eff.median():.0%}; peak memory "
-            f"{trust.maxrss_gb.max():.1f} of {trust.mem_gb.max():.0f} GB."
-            if len(trust) else "")
+    source = getattr(ctx, "sacct_source", "snapshot")
+    if not acct:
+        # no snapshot and no cluster: name the questions this section cannot answer, rather
+        # than rendering NaN as "at most nan% of the billed GPU time"
+        head = ("**sacct is unavailable**, so queue wait, allocation elapsed, billed GPU time, "
+                "GPU-busy share, CPU efficiency and peak memory are not reported here. The "
+                "archive carries no `sacct.json`: run `python -m performance_analysis."
+                "snapshot_sacct` on the cluster and re-export. What remains below is derived "
+                "entirely from `campaign.log`.")
+    elif len(trust):
+        head = (f"Across the trust jobs, at most **{trust.gpu_share_max.max():.0%}** of the billed "
+                f"GPU time had a GPU task running (one GPU busy, three idle, and less than that "
+                f"once model load is subtracted); tasks fill "
+                f"{trust.task_share.median():.0%} of elapsed; "
+                f"CPU efficiency is {trust.cpu_eff.median():.0%}; peak memory "
+                f"{trust.maxrss_gb.max():.1f} of {trust.mem_gb.max():.0f} GB.")
+    else:
+        head = ""
     return "\n\n".join([
         "## C3 - Where the allocation goes",
-        f"n = {len(use)} jobs; sacct from the {getattr(ctx, 'sacct_source', 'snapshot')}. "
+        f"n = {len(use)} jobs; sacct: {source}. "
         "GPU use is an upper bound: no run records utilisation (a gap, see the report's "
         "recommendations). " + head,
         md_table(use, ".3g"), img,
