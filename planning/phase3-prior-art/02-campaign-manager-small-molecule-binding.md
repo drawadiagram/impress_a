@@ -402,9 +402,9 @@ automatically rather than requiring the operator to know it.)
 Tool paths default to specific, hard-coded absolute paths on Delta's `/work/hdd` filesystem, overridable
 by env var:
 ```sh
-export MPNN_PATH="${MPNN_PATH:-/work/hdd/bdyk/hooten1/LigandMPNN}"
-export COLABFOLD_PATH="${COLABFOLD_PATH:-/work/hdd/bdyk/hooten1/localcolabfold}"
-export FOUNDRY_SIF_PATH="${FOUNDRY_SIF_PATH:-/work/hdd/bdyk/hooten1/foundry.sif}"
+export MPNN_PATH="${MPNN_PATH:-/work/hdd/<project>/$USER/LigandMPNN}"
+export COLABFOLD_PATH="${COLABFOLD_PATH:-/work/hdd/<project>/$USER/localcolabfold}"
+export FOUNDRY_SIF_PATH="${FOUNDRY_SIF_PATH:-/work/hdd/<project>/$USER/foundry.sif}"
 export COLABFOLD_CACHE_DIR="${COLABFOLD_CACHE_DIR:-${SCRATCH}/${USER}/.cache/colabfold}"
 ```
 and the script ends with `rm -rf asyncflow.session*` — cleanup of asyncflow's own session directories,
@@ -460,7 +460,7 @@ tar -czf "$DEST_TAR" -C /tmp "foundry_sandbox_$$"
 ```
 producing `foundry_sandbox.tar.gz` — but every other reference to this container in this campaign
 (`SETUP.txt`, `delta_sbatch.sh`) expects a single-file `.sif` at `FOUNDRY_SIF_PATH`
-(`/work/hdd/bdyk/hooten1/foundry.sif`). **`pull_foundry.sh` does not produce a `.sif`** — either a
+(`/work/hdd/<project>/$USER/foundry.sif`). **`pull_foundry.sh` does not produce a `.sif`** — either a
 separate, undocumented `apptainer build foundry.sif <sandbox-or-tar>` step happens outside this repo, or
 this script is a stale/earlier approach that was superseded once someone built the `.sif` by hand.
 Either way, **the container-pull path as checked into this repo is not self-consistent** — flag this as

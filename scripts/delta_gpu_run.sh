@@ -6,8 +6,8 @@
 # examples/small_molecule_binding/delta_gpu_run.sh.
 #
 # Set before calling sbatch (only SBATCH_ACCOUNT and WORK_DIR are required):
-#   export SBATCH_ACCOUNT=<project>-delta-gpu     # bblj-delta-gpu or bdyk-delta-gpu
-#   export WORK_DIR=/work/nvme/bdyk/$USER        # NVMe-backed; see "Why NVMe" below
+#   export SBATCH_ACCOUNT=<project>-delta-gpu
+#   export WORK_DIR=/work/nvme/<project>/$USER        # NVMe-backed; see "Why NVMe" below
 #
 # Why NVMe, and why this replaced SCRATCH: every default path here used to hang off
 # $SCRATCH, which on Delta resolves under /work/hdd - HDD-backed Lustre. Measured on
@@ -118,7 +118,7 @@ echo "Account: ${SLURM_JOB_ACCOUNT:-unknown}"
 
 if [ -z "${WORK_DIR:-}" ]; then
     echo "ERROR: WORK_DIR is not set."
-    echo "       export WORK_DIR=/work/nvme/bdyk/\$USER && sbatch scripts/delta_gpu_run.sh"
+    echo "       export WORK_DIR=/work/nvme/<project>/\$USER && sbatch scripts/delta_gpu_run.sh"
     if [ -n "${SCRATCH:-}" ]; then
         echo
         echo "       NOTE: \$SCRATCH is set (${SCRATCH}) but is no longer read. It pointed at"

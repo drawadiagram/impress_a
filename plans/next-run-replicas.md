@@ -90,7 +90,7 @@ with pinned GPUs, expect ~20 minutes.
 - a local dry check composes the replicas spec at 2 lineages, under the cap, at `f8bcefed…`.
 
 ```bash
-export WORK_DIR=/work/nvme/bdyk/$USER
+export WORK_DIR=/work/nvme/<project>/$USER
 impress-a preflight campaigns/delta-small-molecule-replicas.yaml
 sbatch --partition=gpuA100x4-interactive --time=01:00:00 \
        scripts/delta_gpu_run.sh campaigns/delta-small-molecule-replicas.yaml

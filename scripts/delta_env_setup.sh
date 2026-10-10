@@ -9,7 +9,7 @@
 # the foundry (RFD3) container prerequisites.
 #
 # Usage:
-#   export WORK_DIR=/work/nvme/bdyk/$USER
+#   export WORK_DIR=/work/nvme/<project>/$USER
 #   bash scripts/delta_env_setup.sh [--env-dir DIR] [--python PATH]
 #
 # Defaults (all under $WORK_DIR, which must be on NVMe - see delta_gpu_run.sh's header
@@ -32,7 +32,7 @@ IMPRESS_A_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # ── Require WORK_DIR ──────────────────────────────────────────────────────────
 if [[ -z "${WORK_DIR:-}" ]]; then
     echo "ERROR: set the WORK_DIR env var to your NVMe work root, e.g.:"
-    echo "  export WORK_DIR=/work/nvme/bdyk/\$USER"
+    echo "  export WORK_DIR=/work/nvme/<project>/\$USER"
     echo "  bash scripts/delta_env_setup.sh"
     if [[ -n "${SCRATCH:-}" ]]; then
         echo
@@ -360,7 +360,7 @@ echo "  source ${ENV_DIR}/bin/activate"
 echo ""
 echo "Run the smoke campaign:"
 echo "  export WORK_DIR=${WORK_DIR}"
-echo "  export SBATCH_ACCOUNT=bdyk-delta-gpu   # or bblj-delta-gpu"
+echo "  export SBATCH_ACCOUNT=<project>-delta-gpu"
 echo "  cd ${IMPRESS_A_DIR}"
 echo "  sbatch scripts/delta_gpu_run.sh campaigns/delta-small-molecule-smoke.yaml"
 echo ""

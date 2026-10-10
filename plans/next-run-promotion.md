@@ -62,7 +62,7 @@ reset trust. The interlock asks "did this composition behave?", not "was this de
   harder to read.
 
 ```bash
-export WORK_DIR=/work/nvme/bdyk/$USER
+export WORK_DIR=/work/nvme/<project>/$USER
 impress-a preflight campaigns/delta-small-molecule-trust.yaml
 sbatch --partition=gpuA100x4-interactive --time=01:00:00 \
        scripts/delta_gpu_run.sh campaigns/delta-small-molecule-trust.yaml
