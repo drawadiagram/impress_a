@@ -3,7 +3,7 @@
 **One-line identity.** A BSD-licensed, C++-core/Python-wrapped cheminformatics library — the canonical in-process toolkit for everything a small-molecule workflow needs between "I have a SMILES string" and "I have a 3D conformer, a fingerprint, or a validated substructure match."
 
 ## Identity
-- **Version / release examined:** `ReleaseNotes.md` header → `Release_2026.09.1`. Version macro in `Code/RDGeneral/versions.h.cmake` (`RDKIT_VERSION`, year*1000+month*10+rev scheme). No `pyproject.toml`/`setup.py` at repo root — RDKit is built via CMake + Boost.Python, not a pure pip package; the conda-forge/PyPI `rdkit` wheel is the redistributed artifact. Refcode: `/home/mason/exdrive/rad/impress-a-refcodes/tools/rdkit/`.
+- **Version / release examined:** `ReleaseNotes.md` header → `Release_2026.09.1`. Version macro in `Code/RDGeneral/versions.h.cmake` (`RDKIT_VERSION`, year*1000+month*10+rev scheme). No `pyproject.toml`/`setup.py` at repo root — RDKit is built via CMake + Boost.Python, not a pure pip package; the conda-forge/PyPI `rdkit` wheel is the redistributed artifact. Refcode: `<workspace>/impress-a-refcodes/tools/rdkit/`.
 - **Provenance:** rdkit.org / `rdkit/rdkit` on GitHub, originating from Rational Discovery LLC (Greg Landrum, Julie Penzotti et al.), now community-governed. **BSD 3-Clause** (`license.txt`) — "a business friendly license for open source" per the README, no commercial-use restriction.
 - **Maturity:** production. Ships as `conda install -c conda-forge rdkit` (README's own recommended install path) or PyPI `rdkit`; has a PostgreSQL cartridge, Java/C#/JS wrappers, and is the de facto substrate under nearly every other cheminformatics and generative-chemistry tool in this space (Meeko, OpenFF, DiffDock's ligand handling, ChemGraph — see `tools/ChemGraph/src/chemgraph/tools/docking_core.py`, which builds ligand 3D coordinates with `Chem.AddHs` + `AllChem.EmbedMolecule` + `AllChem.MMFFOptimizeMolecule` before ever touching Vina).
 
@@ -72,12 +72,12 @@ Identical on every target platform because it has no GPU dependency: **Frontier,
 **Core.** RDKit is the load-bearing cheminformatics substrate for this entire cluster and for every other tool in the toolkit that touches a small molecule (Boltz-2's SMILES input, Rosetta's ligand params pipeline, any docking tool's ligand prep). It is licensed permissively, has zero GPU-portability risk (uniquely valuable given how much of the rest of this toolkit is CUDA-anxious), and its P6 classification is not a footnote — it is the concrete argument for why this project's execution layer needs an inline-call path distinct from its job-scheduling path. The one caveat worth tracking operationally is the P6→P2 promotion boundary for large conformer ensembles; get that threshold wrong and either single calls get scheduled (wasteful) or a 10,000-molecule embedding job runs serially inside an agent's own walltime (also wasteful, just differently).
 
 ## Sources
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/rdkit/Docs/Book/GettingStartedInPython.rst` (line numbers cited inline)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/rdkit/ReleaseNotes.md`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/rdkit/license.txt`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/rdkit/README.md`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/rdkit/Code/RDGeneral/versions.h.cmake`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/ChemGraph/src/chemgraph/tools/docking_core.py` (example of RDKit called in-process ahead of a P1/P2 docking step)
+- `<workspace>/impress-a-refcodes/tools/rdkit/Docs/Book/GettingStartedInPython.rst` (line numbers cited inline)
+- `<workspace>/impress-a-refcodes/tools/rdkit/ReleaseNotes.md`
+- `<workspace>/impress-a-refcodes/tools/rdkit/license.txt`
+- `<workspace>/impress-a-refcodes/tools/rdkit/README.md`
+- `<workspace>/impress-a-refcodes/tools/rdkit/Code/RDGeneral/versions.h.cmake`
+- `<workspace>/impress-a-refcodes/tools/ChemGraph/src/chemgraph/tools/docking_core.py` (example of RDKit called in-process ahead of a P1/P2 docking step)
 - [tandemai-inc/rdkit-mcp-server](https://github.com/tandemai-inc/rdkit-mcp-server) — community MCP server, inspected via WebFetch; MIT license, third-party, not RDKit-project-affiliated
 - [s20ss/mcp_rdkit](https://github.com/s20ss/mcp_rdkit) — second community MCP server, found but not independently inspected beyond search snippet
 - rdkit.org, `conda-forge rdkit` package — general provenance, not independently re-verified beyond README claim

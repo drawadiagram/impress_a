@@ -1,6 +1,6 @@
 # flowgentic (v0.1.0) — Phase 2 middleware exploration
 
-Refcode root (read-only): `/home/mason/exdrive/rad/impress-a-refcodes/middleware/flowgentic/`
+Refcode root (read-only): `<workspace>/impress-a-refcodes/middleware/flowgentic/`
 HEAD examined: `6c63601` (2026-01-26)
 
 ## 1. What it is

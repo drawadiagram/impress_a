@@ -167,6 +167,6 @@ grammar, multi-format readers, or ensemble-parallel analysis path.
 - MDAnalysis PMDA (parallel analysis): https://github.com/MDAnalysis/pmda
 - MDTraj GitHub / analysis reference: https://github.com/mdtraj/mdtraj ; https://mdtraj.org/1.9.4/analysis.html
 - MDTraj PyPI (version/license): https://pypi.org/project/mdtraj/
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/gromacs/CMakeLists.txt:386` (`GMX_USE_TNG` default ON — trajectory format an analysis environment must support)
+- `<workspace>/impress-a-refcodes/tools/gromacs/CMakeLists.txt:386` (`GMX_USE_TNG` default ON — trajectory format an analysis environment must support)
 - Comparative LOC/workflow observation (MDTraj vs. MDAnalysis, ~103 vs. 118 lines for a standard RMSD/RMSF/Rg pipeline) — external secondary source, not independently re-verified.
 - No upstream MCP server found for either library (absence-of-evidence, September 2026 research).

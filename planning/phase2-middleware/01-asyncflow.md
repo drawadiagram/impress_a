@@ -1,6 +1,6 @@
 # `radical.asyncflow` v0.5.1 — Phase 2 Middleware Exploration
 
-Refcode root: `/home/mason/exdrive/rad/impress-a-refcodes/middleware/radical.asyncflow/`
+Refcode root: `<workspace>/impress-a-refcodes/middleware/radical.asyncflow/`
 Version under test: **0.5.1** (`VERSION`, `pyproject.toml`), released 2026-08-20. Real git history
 (`v0.1.1` → `v0.3.0` → `v0.3.1` → `v0.4.0` → `v0.5.0` → `v0.5.1`), 109 unit/integration tests across
 ~2,900 lines of test code against ~2,900 lines of source.

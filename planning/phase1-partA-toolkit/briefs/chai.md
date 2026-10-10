@@ -4,7 +4,7 @@
 feature is a strong no-MSA mode built on a traced ESM2-3B embedding track and a native
 residue/atom-level restraint system (contacts, pockets, covalent bonds, glycans); Chai-2 is Chai
 Discovery's closed-weights antibody-design successor, not present in any form in this refcode. Refcode:
-`/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/`.
+`<workspace>/impress-a-refcodes/tools/chai-lab/`.
 
 ## Identity
 - **Version / release examined:** `chai_lab/__init__.py` → `__version__ = "0.6.1"`. `git log` on the
@@ -322,30 +322,30 @@ closed, partnership-only product with no self-hostable path on any DOE/ACCESS pl
 
 ## Sources
 All claims below are **verified directly against the refcode** unless explicitly marked web-sourced.
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/pyproject.toml`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/chai_lab/__init__.py` (version string)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/README.md`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/LICENSE`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/requirements.in`, `requirements.dev`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/Dockerfile.chailab`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/chai_lab/main.py` (CLI registration)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/chai_lab/chai1.py` (`run_inference`,
+- `<workspace>/impress-a-refcodes/tools/chai-lab/pyproject.toml`
+- `<workspace>/impress-a-refcodes/tools/chai-lab/chai_lab/__init__.py` (version string)
+- `<workspace>/impress-a-refcodes/tools/chai-lab/README.md`
+- `<workspace>/impress-a-refcodes/tools/chai-lab/LICENSE`
+- `<workspace>/impress-a-refcodes/tools/chai-lab/requirements.in`, `requirements.dev`
+- `<workspace>/impress-a-refcodes/tools/chai-lab/Dockerfile.chailab`
+- `<workspace>/impress-a-refcodes/tools/chai-lab/chai_lab/main.py` (CLI registration)
+- `<workspace>/impress-a-refcodes/tools/chai-lab/chai_lab/chai1.py` (`run_inference`,
   `run_folding_on_context`, `StructureCandidates`, device handling, token/template/MSA caps, output
   writing — lines cited inline above)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/chai_lab/ranking/rank.py`,
+- `<workspace>/impress-a-refcodes/tools/chai-lab/chai_lab/ranking/rank.py`,
   `chai_lab/ranking/ptm.py`, `chai_lab/ranking/plddt.py`, `chai_lab/ranking/clashes.py` (score field
   names and the `aggregate_score` formula)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/chai_lab/utils/paths.py` (weight download
+- `<workspace>/impress-a-refcodes/tools/chai-lab/chai_lab/utils/paths.py` (weight download
   mechanism and URLs)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/chai_lab/data/dataset/embeddings/esm.py`
+- `<workspace>/impress-a-refcodes/tools/chai-lab/chai_lab/data/dataset/embeddings/esm.py`
   (ESM2-3B traced checkpoint, URL, device handling)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/chai_lab/data/dataset/msas/colabfold.py`
+- `<workspace>/impress-a-refcodes/tools/chai-lab/chai_lab/data/dataset/msas/colabfold.py`
   (ColabFold/MMseqs2 server call, default `host_url`, attribution comment)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/chai_lab/data/collate/utils.py`
+- `<workspace>/impress-a-refcodes/tools/chai-lab/chai_lab/data/collate/utils.py`
   (`AVAILABLE_MODEL_SIZES` fixed padding buckets)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/chai_lab/data/dataset/all_atom_feature_context.py`
+- `<workspace>/impress-a-refcodes/tools/chai-lab/chai_lab/data/dataset/all_atom_feature_context.py`
   (`MAX_MSA_DEPTH`, `MAX_NUM_TEMPLATES`)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/chai-lab/examples/predict_structure.py`,
+- `<workspace>/impress-a-refcodes/tools/chai-lab/examples/predict_structure.py`,
   `examples/msas/predict_with_msas.py`, `examples/msas/README.md`, `examples/restraints/README.md`,
   `examples/restraints/contact.restraints`, `examples/restraints/pocket.restraints`,
   `examples/covalent_bonds/README.md`, `examples/covalent_bonds/predict_covalent_ligand.py`
@@ -355,7 +355,7 @@ All claims below are **verified directly against the refcode** unless explicitly
   (bioRxiv doi 10.1101/2025.07.05.663018, cited in `README.md`'s citation block but not otherwise
   present in the refcode) — used only for background framing, not for any claim in Compute pattern,
   Deployment, or Failure modes above.
-- Compared throughout against `/home/mason/exdrive/rad/impress-a/docs/phase1-partA-toolkit/briefs/boltz.md`
+- Compared throughout against `<workspace>/impress-a/docs/phase1-partA-toolkit/briefs/boltz.md`
   for peer-consistency (constraint schema, MSA-server flag pattern, confidence-score formula, cache/skip
   behavior).
 - No MCP server found for Chai (absence inferred from refcode contents, not exhaustively re-searched on

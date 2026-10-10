@@ -155,7 +155,7 @@ clears the bar this project needs.
   `briefs/openmm.md`, `briefs/foldseek.md`, `briefs/mmseqs2.md`, `briefs/rdkit.md`, `briefs/docking.md`,
   `briefs/structure-libraries.md` (this project's own prior-established findings, reused per the task brief's
   instruction not to re-derive them)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/ChemGraph/src/chemgraph/mcp/` (repo-local, read in full for
+- `<workspace>/impress-a-refcodes/tools/ChemGraph/src/chemgraph/mcp/` (repo-local, read in full for
   `briefs/chemgraph.md`)
 - Live session: `mcp__pymol__*` tool listing (this conversation's own tool roster) — schemas present, but a
   direct `status` call returned connection-refused, so this counts as identification, not verification.

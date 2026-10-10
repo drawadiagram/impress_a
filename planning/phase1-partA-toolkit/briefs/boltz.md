@@ -3,7 +3,7 @@
 **One-line identity.** An open-source, MIT-licensed AF3-class biomolecular co-folding model that jointly predicts complex structure *and* small-molecule binding affinity in one model.
 
 ## Identity
-- **Version / release examined:** `pyproject.toml` → `name = "boltz"`, `version = "2.2.1"`, `requires-python = ">=3.10,<3.13"`. Refcode: `/home/mason/exdrive/rad/impress-a-refcodes/tools/boltz/`.
+- **Version / release examined:** `pyproject.toml` → `name = "boltz"`, `version = "2.2.1"`, `requires-python = ">=3.10,<3.13"`. Refcode: `<workspace>/impress-a-refcodes/tools/boltz/`.
 - **Provenance:** MIT Technology / Wohlwend, Corso, Passaro et al. (originally MIT CSAIL-affiliated, now Boltz/`jwohlwend/boltz` on GitHub). **MIT license**, code and weights, explicitly for both academic and commercial use (README: *"All the code and weights are provided under MIT license, making them freely available for both academic and commercial uses"*). Boltz-1 paper: doi 10.1101/2024.11.19.624167. Boltz-2 paper: doi 10.1101/2025.06.14.659707.
 - **Maturity:** production-grade for a research tool — versioned PyPI releases, `[project.scripts] boltz = "boltz.main:cli"`, NVIDIA has packaged it as a NIM (`docs.nvidia.com/nim/bionemo/boltz2`), and it is widely used as a community structure/affinity predictor (e.g., ChimeraX has a native Boltz tool). Evaluation/training code for Boltz-2 specifically is marked "coming soon" in the README as of the examined snapshot.
 
@@ -79,10 +79,10 @@ run as (with remote MSA, per README): `boltz predict input_path --use_msa_server
 **Core.** Boltz-2 is the single best-fit tool for the small-molecule-binding problem class in this cluster because it is the only one with a native, jointly-trained affinity head, it carries the most permissive license of the group (MIT, unrestricted commercial use, unlike AF3), and its staging burden is trivially small (~3.6 GB total vs. hundreds of GB to TB for AF2/AF3 local genetic databases) with a documented, first-party remote-MSA path (`--use_msa_server`) that fits this project's full-egress P5 model directly. Its chief open risk is GPU portability off CUDA: the `--no_kernels` fallback is real but AMD/Intel deployment is unverified and should be validated early rather than assumed.
 
 ## Sources
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/boltz/pyproject.toml`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/boltz/README.md`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/boltz/docs/prediction.md`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/boltz/examples/affinity.yaml`, `pocket.yaml`, `prot_no_msa.yaml`, `prot_custom_msa.yaml`
+- `<workspace>/impress-a-refcodes/tools/boltz/pyproject.toml`
+- `<workspace>/impress-a-refcodes/tools/boltz/README.md`
+- `<workspace>/impress-a-refcodes/tools/boltz/docs/prediction.md`
+- `<workspace>/impress-a-refcodes/tools/boltz/examples/affinity.yaml`, `pocket.yaml`, `prot_no_msa.yaml`, `prot_custom_msa.yaml`
 - [Boltz-2 preprint](https://doi.org/10.1101/2025.06.14.659707), [Boltz-1 preprint](https://doi.org/10.1101/2024.11.19.624167)
 - [NVIDIA NIM for Boltz2 support matrix](https://docs.nvidia.com/nim/bionemo/boltz2/1.2.0/support-matrix.html) — GPU support inferred as NVIDIA-only from this page; not verified against Boltz upstream directly.
 - `tt-boltz` Tenstorrent fork (cited in Boltz README) as evidence a non-CUDA port is feasible in principle — not independently inspected.

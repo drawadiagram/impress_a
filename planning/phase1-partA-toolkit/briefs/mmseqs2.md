@@ -4,7 +4,7 @@
 
 ## Identity
 - **Version / release examined:** vendored copy at `impress-a-refcodes/tools/foldseek/lib/mmseqs`, same commit snapshot as the foldseek refcode (`463739e`, 2026-09-09). `git describe` inside that subtree resolves noisily to the parent foldseek tag history because it is embedded source, not a live submodule checkout in this repo (`.gitmodules` in `tools/foldseek/` does not list `lib/mmseqs` itself as a submodule).
-- **Provenance:** Söding Lab / Steinegger Lab, GPLv3 (same license family as Foldseek — `README.md` header identifies it as "MMseqs2: ultra fast and sensitive sequence search and clustering suite"). Upstream canonical repo: https://github.com/soedinglab/MMseqs2. Refcode path: `/home/mason/exdrive/rad/impress-a-refcodes/tools/foldseek/lib/mmseqs/`.
+- **Provenance:** Söding Lab / Steinegger Lab, GPLv3 (same license family as Foldseek — `README.md` header identifies it as "MMseqs2: ultra fast and sensitive sequence search and clustering suite"). Upstream canonical repo: https://github.com/soedinglab/MMseqs2. Refcode path: `<workspace>/impress-a-refcodes/tools/foldseek/lib/mmseqs/`.
 - **Maturity:** production. It is the search/clustering backbone for ColabFold, MMseqs2-GPU, and Foldseek itself; actively maintained with a 2024/2025 GPU-acceleration paper (Kallenborn et al., Nat. Methods 2025).
 
 ## Scientific role
@@ -76,8 +76,8 @@ Applicable across all four in-scope problem classes since MSA generation is a un
 **Core.** MMseqs2 is unavoidable as the search-and-MSA engine underneath both Foldseek (already Core) and ColabFold (used by essentially every folding-prediction step in the self-consistency loop this project depends on). Its CPU-only status on Frontier/Aurora is a real but bounded cost — MSA generation is P2, not the dominant compute of a design campaign, and full egress means the agent can often route around local staging entirely by hitting the public ColabFold MSA server for modest workloads. Recommend: default to remote MSA server for interactive/low-throughput iteration; stage UniRef30 + ColabFoldDB locally only for large-batch campaigns on GPU-rich NVIDIA allocations (Polaris/Delta/Bridges-2/Expanse) where the fair-use ceiling of the public server would otherwise bind.
 
 ## Sources
-- Refcode: `/home/mason/exdrive/rad/impress-a-refcodes/tools/foldseek/lib/mmseqs/README.md` (quoted throughout, lines cited inline)
-- Refcode: `/home/mason/exdrive/rad/impress-a-refcodes/tools/foldseek/.gitmodules` (submodule structure)
+- Refcode: `<workspace>/impress-a-refcodes/tools/foldseek/lib/mmseqs/README.md` (quoted throughout, lines cited inline)
+- Refcode: `<workspace>/impress-a-refcodes/tools/foldseek/.gitmodules` (submodule structure)
 - MMseqs2 GitHub: https://github.com/soedinglab/MMseqs2
 - Kallenborn et al., "GPU-accelerated homology search with MMseqs2," Nat. Methods 2025 (bioRxiv 2024.11.13.623350), https://www.nature.com/articles/s41592-025-02819-8 ; https://www.biorxiv.org/content/10.1101/2024.11.13.623350v1
 - NVIDIA developer blog, "Boost AlphaFold2 Protein Structure Prediction with GPU-Accelerated MMseqs2," https://developer.nvidia.com/blog/boost-alphafold2-protein-structure-prediction-with-gpu-accelerated-mmseqs2/ — source for the 31.8x/1.65x speed figures (web-searched, not independently re-verified against the raw benchmark data)

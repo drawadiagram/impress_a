@@ -34,7 +34,7 @@ Decisions fixed by the user before research began:
 ## How this was produced
 
 Three read-only exploration agents surveyed the reference codebases in
-`/home/mason/exdrive/rad/impress-a-refcodes/tools/`. Eight research agents then wrote the briefs in two waves,
+`<workspace>/impress-a-refcodes/tools/`. Eight research agents then wrote the briefs in two waves,
 each against the fixed template and taxonomy, grounding claims in refcode where a tool was vendored and in web
 research otherwise. Refcode-grounded and web-sourced claims are distinguished inline throughout.
 

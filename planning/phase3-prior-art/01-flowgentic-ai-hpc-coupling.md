@@ -1,6 +1,6 @@
 # Prior-art review: `flowgentic` — `examples/ai-hpc-coupling/`
 
-**Repo:** `/home/mason/exdrive/rad/impress-a-refcodes/middleware/flowgentic`
+**Repo:** `<workspace>/impress-a-refcodes/middleware/flowgentic`
 **Ref:** `origin/demo/radical` (read via `git show`/`git ls-tree`; never checked out)
 **Path:** `examples/ai-hpc-coupling/`
 

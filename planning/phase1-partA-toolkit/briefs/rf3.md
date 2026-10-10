@@ -3,7 +3,7 @@
 **One-line identity.** An all-atom biomolecular structure prediction network (AF3-class diffusion architecture, trained with explicit chirality features and atom-level geometric conditioning) built on the AtomWorks framework, distributed as a model within the RosettaCommons Foundry package.
 
 ## Identity
-- **Version / release examined:** refcode at `/home/mason/exdrive/rad/impress-a-refcodes/tools/foundry/models/rf3`, package `rc-foundry` (dynamic version via setuptools-scm; installed dev snapshot `0.1.dev917+gcbbe4c6a6.d20251001`, per `src/rf3/_version.py`). Preprint: "Accelerating Biomolecular Modeling with AtomWorks and RF3" (bioRxiv 2025.08.14.670328, Aug 2025). Public GitHub release Sept 15 2025 (RosettaCommons blog).
+- **Version / release examined:** refcode at `<workspace>/impress-a-refcodes/tools/foundry/models/rf3`, package `rc-foundry` (dynamic version via setuptools-scm; installed dev snapshot `0.1.dev917+gcbbe4c6a6.d20251001`, per `src/rf3/_version.py`). Preprint: "Accelerating Biomolecular Modeling with AtomWorks and RF3" (bioRxiv 2025.08.14.670328, Aug 2025). Public GitHub release Sept 15 2025 (RosettaCommons blog).
 - **Provenance:** RosettaCommons / Institute for Protein Design. Code and model weights released under a **permissive BSD license** (confirmed via RosettaCommons announcement and `pyproject.toml` classifier `License :: OSI Approved :: BSD License`). Refcode: `tools/foundry/models/rf3/` inside `tools/foundry/` (the parent monorepo also hosts RFD3 and ProteinMPNN/LigandMPNN).
 - **Maturity:** active research, recently open-sourced. The RF3 README itself flags: *"We are currently finalizing some cleanup work on the inference API. Please expect the API (including input formats and confidence outputs) to stabilize in the upcoming weeks."* Treat the CLI surface as pre-stable.
 
@@ -73,16 +73,16 @@ rf3 fold inputs='models/rf3/docs/examples/3en2_from_json_with_msa.json'
 **Core.** RF3 is the strongest open-weights AF3-class co-folder available to this project: permissive BSD license (no access gate, unlike AF3), native ligand/covalent/chirality handling directly relevant to enzyme and small-molecule problem classes, and — uniquely among this cluster — a first-party, documented Intel XPU install path that materially de-risks Aurora. Its main liabilities are an explicitly pre-stable inference API (the README's own warning) and unverified AMD/HIP support. Recommend pinning a specific commit/checkpoint before relying on it in a production loop, and validating the XPU and (if attempted) ROCm paths with the 5vht smoke test before Aurora/Frontier deployment.
 
 ## Sources
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/foundry/models/rf3/README.md`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/foundry/models/rf3/docs/index.md`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/foundry/models/rf3/src/rf3/cli.py`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/foundry/models/rf3/src/rf3/_version.py`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/foundry/models/rf3/src/rf3/model/layers/attention.py`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/foundry/models/rf3/src/rf3/metrics/predicted_error.py`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/foundry/models/rf3/configs/trainer/xpu.yaml`, `cpu.yaml`, `rf3.yaml`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/foundry/README.md`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/foundry/pyproject.toml`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/foundry/src/foundry/__init__.py`
+- `<workspace>/impress-a-refcodes/tools/foundry/models/rf3/README.md`
+- `<workspace>/impress-a-refcodes/tools/foundry/models/rf3/docs/index.md`
+- `<workspace>/impress-a-refcodes/tools/foundry/models/rf3/src/rf3/cli.py`
+- `<workspace>/impress-a-refcodes/tools/foundry/models/rf3/src/rf3/_version.py`
+- `<workspace>/impress-a-refcodes/tools/foundry/models/rf3/src/rf3/model/layers/attention.py`
+- `<workspace>/impress-a-refcodes/tools/foundry/models/rf3/src/rf3/metrics/predicted_error.py`
+- `<workspace>/impress-a-refcodes/tools/foundry/models/rf3/configs/trainer/xpu.yaml`, `cpu.yaml`, `rf3.yaml`
+- `<workspace>/impress-a-refcodes/tools/foundry/README.md`
+- `<workspace>/impress-a-refcodes/tools/foundry/pyproject.toml`
+- `<workspace>/impress-a-refcodes/tools/foundry/src/foundry/__init__.py`
 - Preprint: [Accelerating Biomolecular Modeling with AtomWorks and RF3](https://doi.org/10.1101/2025.08.14.670328) — DockQ/chirality benchmark numbers (RF3 vs AF3/Boltz-2/Chai-1) inferred from search summary, not independently re-derived from the PDF; verify against the paper directly before citing in the summary report.
 - [RosettaCommons announcement, Sept 2025](https://rosettacommons.org/2025/09/15/atomworks-rf3-in-foundry-now-open-source-on-github/) — BSD license confirmation.
 - No MCP server found for RF3/Foundry (search performed; inferred absence, not exhaustively verified against every registry).

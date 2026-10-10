@@ -9,7 +9,7 @@ script reports the count rather than this file restating it:
 
 ```sh
 python3 ~/.claude/skills/code-walk-deck/scripts/check_anchors.py \
-    --anchors slides/anchors.json --root /home/mason/exdrive/rad
+    --anchors slides/anchors.json --root <workspace>
 ```
 
 The root is the *parent* of this checkout, because the table also anchors the reference IMPRESS
@@ -213,7 +213,7 @@ daemon thread is abandoned for free.
 S=~/.claude/skills/code-walk-deck/scripts
 PYTHONPATH=src python3 slides/run_model.py                     # run.json, from this checkout
 python3 $S/check_anchors.py --anchors slides/anchors.json \
-    --root /home/mason/exdrive/rad                             # do not present a drifted anchor
+    --root <workspace>                             # do not present a drifted anchor
 python3 $S/make_script.py --deck slides/build_deck.js          # DECK_SCRIPT.md, from the notes
 NODE_PATH=<dir with pptxgenjs> node slides/build_deck.js
 ```

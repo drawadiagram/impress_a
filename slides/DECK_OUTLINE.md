@@ -190,7 +190,7 @@ now; do not put them back to fill time.
 ```sh
 S=~/.claude/skills/code-walk-deck/scripts
 PYTHONPATH=src python3 slides/run_model.py
-python3 $S/check_anchors.py --anchors slides/anchors.json --root /home/mason/exdrive/rad
+python3 $S/check_anchors.py --anchors slides/anchors.json --root <workspace>
 python3 $S/make_script.py --deck slides/build_deck.js
 NODE_PATH=<dir with pptxgenjs> node slides/build_deck.js
 soffice --headless --convert-to pdf --outdir slides slides/impress-a-codewalk.pptx

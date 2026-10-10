@@ -6,10 +6,10 @@ contract or a thin Python wrapper (gmxapi) over that same contract.
 
 ## Identity
 - **Version / release examined:** `project(Gromacs VERSION 2027.0)` —
-  `/home/mason/exdrive/rad/impress-a-refcodes/tools/gromacs/CMakeLists.txt:67`
+  `<workspace>/impress-a-refcodes/tools/gromacs/CMakeLists.txt:67`
 - **Provenance:** GROMACS development team (KTH Royal Institute of Technology / Uppsala University and
   collaborators). LGPL ≥ 4.6, GPL for earlier history (per upstream project metadata). Refcode:
-  `/home/mason/exdrive/rad/impress-a-refcodes/tools/gromacs/`
+  `<workspace>/impress-a-refcodes/tools/gromacs/`
 - **Maturity:** production. One of the two or three most widely deployed biomolecular MD engines on
   DOE and NSF machines; decades of continuous development, active GitLab CI
   (`.gitlab-ci.yml`), physical-validation test suite (`GMX_PHYSICAL_VALIDATION` option).
@@ -158,13 +158,13 @@ loop — it belongs at the final-triage stage of a campaign, invoked on a short 
 candidate.
 
 ## Sources
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/gromacs/CMakeLists.txt` (version, GMX_GPU/GMX_MPI/GMX_SYCL options)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/gromacs/docs/user-guide/getting-started.rst`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/gromacs/docs/user-guide/mdrun-features.rst`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/gromacs/docs/user-guide/system-preparation.rst`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/gromacs/python_packaging/gmxapi/src/gmxapi/simulation/{mdrun,fileio,modify_input}.py`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/gromacs/python_packaging/gmxapi/test/test_mdrun.py`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/gromacs/src/testutils/simulationdatabase/freeenergy/`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/gromacs/share/top/` (bundled force fields)
+- `<workspace>/impress-a-refcodes/tools/gromacs/CMakeLists.txt` (version, GMX_GPU/GMX_MPI/GMX_SYCL options)
+- `<workspace>/impress-a-refcodes/tools/gromacs/docs/user-guide/getting-started.rst`
+- `<workspace>/impress-a-refcodes/tools/gromacs/docs/user-guide/mdrun-features.rst`
+- `<workspace>/impress-a-refcodes/tools/gromacs/docs/user-guide/system-preparation.rst`
+- `<workspace>/impress-a-refcodes/tools/gromacs/python_packaging/gmxapi/src/gmxapi/simulation/{mdrun,fileio,modify_input}.py`
+- `<workspace>/impress-a-refcodes/tools/gromacs/python_packaging/gmxapi/test/test_mdrun.py`
+- `<workspace>/impress-a-refcodes/tools/gromacs/src/testutils/simulationdatabase/freeenergy/`
+- `<workspace>/impress-a-refcodes/tools/gromacs/share/top/` (bundled force fields)
 - GROMACS performance on different GPU types — NHR@FAU: https://hpc.fau.de/2022/02/10/gromacs-performance-on-different-gpu-types/ (241.2 ns/day, 80,289-atom system, A100) — external, not verified against this refcode's exact version but representative of modern GROMACS GPU throughput.
 - "GROMACS on AMD GPU-Based HPC Platforms: Using SYCL for Performance and Portability" (arXiv:2405.01420) — external, cited for AMD/SYCL performance context, inferred relevance not independently re-verified line-by-line.

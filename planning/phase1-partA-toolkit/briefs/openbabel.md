@@ -3,7 +3,7 @@
 **One-line identity.** A GPL-2.0 chemical-format-conversion toolbox ("speak the many languages of chemical data") whose one genuinely load-bearing capability for this project is pH-dependent protonation and PDBQT export that RDKit does not natively provide.
 
 ## Identity
-- **Version / release examined:** no refcode present in `/home/mason/exdrive/rad/impress-a-refcodes/tools/` — Open Babel is **not vendored in this repo**; everything below is from upstream docs/search, not a local read. Current stable line per upstream docs is the 3.x series (`open-babel.readthedocs.io`, 3.0.1/3.1.x docs examined).
+- **Version / release examined:** no refcode present in `<workspace>/impress-a-refcodes/tools/` — Open Babel is **not vendored in this repo**; everything below is from upstream docs/search, not a local read. Current stable line per upstream docs is the 3.x series (`open-babel.readthedocs.io`, 3.0.1/3.1.x docs examined).
 - **Provenance:** openbabel.org / `openbabel/openbabel` on GitHub, community project (originated from the Babel format-conversion tool). **License: GPL v2.0** — this is copyleft, not permissive; a hard architectural fact, not a detail (see Deployment section).
 - **Maturity:** production/mature, long-lived (originally released mid-2000s), broad adoption as the field's default format-swiss-army-knife; actively maintained on GitHub.
 
@@ -58,7 +58,7 @@ Trivial across every platform — CPU-only, no vendor GPU dependency, so Frontie
 **Recommended**, not Core, and the brief should say plainly why: **against RDKit, Open Babel genuinely adds two things and duplicates the rest.** It genuinely adds (1) broader raw format coverage — ~108 readable/107 writable formats versus RDKit's narrower native set, which matters when an upstream source hands the agent a format RDKit doesn't read directly, and (2) `-p <pH>` pH-dependent protonation, which RDKit has no native equivalent for (RDKit's `AddHs` adds all hydrogens unconditionally, pH-independent — confirmed via `rdkit/rdkit` GitHub discussion #4078, "pH-dependent protonation"). Everything else in Open Babel's surface — SMILES parsing, basic 3D generation, descriptor-adjacent calculations — is either duplicated by RDKit or done *better* by RDKit (ETKDG conformers are the stronger generator; RDKit's sanitization/valence model is stricter). The practical recommendation for this project: **use RDKit as the default cheminformatics engine, and shell out to Open Babel specifically for (a) `-p` protonation-state assignment and (b) PDBQT export**, not as a general-purpose replacement. GPL-2.0 licensing is a non-blocking but real consideration if any future component considers linking rather than subprocess-calling it.
 
 ## Sources
-- No refcode in `/home/mason/exdrive/rad/impress-a-refcodes/tools/` — Open Babel is not vendored in this project; all claims below are from upstream sources, marked as such.
+- No refcode in `<workspace>/impress-a-refcodes/tools/` — Open Babel is not vendored in this project; all claims below are from upstream sources, marked as such.
 - [Open Babel CLI docs](https://open-babel.readthedocs.io/en/latest/Command-line_tools/babel.html) — `-p`/`-h` semantics, example command
 - [Open Babel Supported File Formats](https://open-babel.readthedocs.io/en/latest/FileFormats/Overview.html) — format count (~108 read / ~107 write)
 - [openbabel/openbabel GitHub](https://github.com/openbabel/openbabel) — license (GPL v2.0), project status

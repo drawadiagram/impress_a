@@ -6,16 +6,16 @@ no biomolecular-force-field center of gravity.
 
 ## Identity
 - **Version / release examined:** `#define LAMMPS_VERSION "2 Sep 2026"` —
-  `/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/src/version.h:1`
+  `<workspace>/impress-a-refcodes/tools/lammps/src/version.h:1`
 - **Provenance:** Sandia National Laboratories (originally), now a broad multi-institution open-source
-  project. Refcode: `/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/`
+  project. Refcode: `<workspace>/impress-a-refcodes/tools/lammps/`
 - **Maturity:** production. Very actively developed (packages tree alone spans dozens of physics
   domains — `src/*` package directories), strong DOE-lab pedigree, first-class GPU/Kokkos investment.
 
 ## Scientific role
 LAMMPS is a materials-science and soft-matter MD engine first, a biomolecular MD engine a distant
 second. Its bundled biomolecular example — `examples/peptide/in.peptide`
-(`/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/examples/peptide/in.peptide`), a "solvated
+(`<workspace>/impress-a-refcodes/tools/lammps/examples/peptide/in.peptide`), a "solvated
 5-mer peptide" using `pair_style lj/charmm/coul/long`, `bond_style harmonic`, `angle_style charmm`,
 `dihedral_style charmm` — is a 30-year-old canonical CHARMM benchmark, not an actively maintained
 biomolecular-design workflow. LAMMPS *can* run a CHARMM- or AMBER-style protein force field, but the
@@ -38,7 +38,7 @@ force-field conventions for no scientific capability GROMACS/OpenMM lack.
 - **Polymer or peptide-materials work** outside pure biomolecular MD (e.g., designed peptide
   self-assembly into fibrils/hydrogels, protein-polymer conjugates) — genuinely LAMMPS's home turf.
 - **ML interatomic potentials via the `ML-IAP` package**
-  (`/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/src/ML-IAP/`, e.g. `pair_mliap.cpp`,
+  (`<workspace>/impress-a-refcodes/tools/lammps/src/ML-IAP/`, e.g. `pair_mliap.cpp`,
   `mliap_model_python.cpp` for coupling a Python-defined NN/ACE/SNAP potential) — if this project ever
   needs to run MD with a learned potential rather than a classical force field, `ML-IAP`'s
   `mliap_model_python_couple.pyx` Python-coupling path is a real, non-trivial capability GROMACS does
@@ -47,7 +47,7 @@ force-field conventions for no scientific capability GROMACS/OpenMM lack.
 ## Invocation & I/O contract
 - **How a unit of work is invoked:** CLI, `lmp -in in.peptide -log log.peptide` (binary name `lmp`,
   built via CMake — `cmake/CMakeLists.txt`); or the `lammps` Python module
-  (`/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/python/lammps/`) which wraps the C library
+  (`<workspace>/impress-a-refcodes/tools/lammps/python/lammps/`) which wraps the C library
   interface for in-process control of an already-open LAMMPS instance.
 - **Inputs:** an input script (`in.*`, LAMMPS's own command language) plus a data file (`data.*`,
   LAMMPS's own atom/bond/angle/topology format) — e.g. `examples/peptide/data.peptide`. Neither format
@@ -134,13 +134,13 @@ or (c) MD driven by a learned interatomic potential via the `ML-IAP` package
 revisiting this brief.
 
 ## Sources
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/src/version.h`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/examples/peptide/in.peptide`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/examples/peptide/data.peptide`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/bench/in.rhodo`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/cmake/Modules/Packages/GPU.cmake`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/cmake/Modules/Packages/KOKKOS.cmake`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/doc/src/restart.rst`
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/src/ML-IAP/` (`pair_mliap.cpp`, `mliap_model_python.cpp`, `mliap_model_python_couple.pyx`)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/lammps/python/lammps/`
+- `<workspace>/impress-a-refcodes/tools/lammps/src/version.h`
+- `<workspace>/impress-a-refcodes/tools/lammps/examples/peptide/in.peptide`
+- `<workspace>/impress-a-refcodes/tools/lammps/examples/peptide/data.peptide`
+- `<workspace>/impress-a-refcodes/tools/lammps/bench/in.rhodo`
+- `<workspace>/impress-a-refcodes/tools/lammps/cmake/Modules/Packages/GPU.cmake`
+- `<workspace>/impress-a-refcodes/tools/lammps/cmake/Modules/Packages/KOKKOS.cmake`
+- `<workspace>/impress-a-refcodes/tools/lammps/doc/src/restart.rst`
+- `<workspace>/impress-a-refcodes/tools/lammps/src/ML-IAP/` (`pair_mliap.cpp`, `mliap_model_python.cpp`, `mliap_model_python_couple.pyx`)
+- `<workspace>/impress-a-refcodes/tools/lammps/python/lammps/`
 - MCP LAMMPS Server (Chenghao-Wu) — glama.ai listing: community-reported, not independently verified; treated as unverified.

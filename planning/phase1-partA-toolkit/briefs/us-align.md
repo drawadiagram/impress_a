@@ -79,7 +79,7 @@ Zero platform risk. Because it is CPU-only, self-contained, and compiles with a 
 **Core.** This is the tool that makes the self-consistency loop — the single most important accept/reject mechanism in modern de novo protein design — actually computable. Every other generative or predictive tool in this toolkit (RFdiffusion3, ProteinMPNN, AlphaFold2/ColabFold, ESMFold, Boltz-2, Chai) produces an artifact that this tool then judges against the design intent. It is cheap, portable across every target platform with zero GPU-vendor risk, and has no viable substitute for TM-score computation at this speed and reliability. The one operational caveat, not a reason to downgrade the verdict: pin a post-2026-08 build to avoid the documented `-mm 1` asymmetry bug, and bake the accept/reject thresholds (scRMSD < 2.0 Å; TM-score ≥ 0.5 for "same fold") into campaign-level policy rather than leaving them agent-tunable.
 
 ## Sources
-- No refcode present (verified absence via `ls /home/mason/exdrive/rad/impress-a-refcodes/tools/`)
+- No refcode present (verified absence via `ls <workspace>/impress-a-refcodes/tools/`)
 - US-align GitHub: https://github.com/pylelab/USalign (fetched directly; compile instructions, `-mm` flag family, license text, and changelog dates quoted/paraphrased from this source)
 - Zhang Lab US-align page: https://zhanggroup.org/US-align/
 - TM-score background / 0.5-threshold-for-same-fold: Zhang & Skolnick, TM-score description at https://zhanggroup.org/TM-score/ ; Xu & Zhang, "How significant is a protein structure similarity with TM-score = 0.5?" (referenced via search results, not independently re-read — flagged as inferred)

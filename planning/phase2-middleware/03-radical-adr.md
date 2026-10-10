@@ -1,6 +1,6 @@
 # `radical.adr` — RADICAL Autonomous Decision Runtime (v0.1.0)
 
-Refcode root (read-only): `/home/mason/exdrive/rad/impress-a-refcodes/middleware/radical.adr/`
+Refcode root (read-only): `<workspace>/impress-a-refcodes/middleware/radical.adr/`
 
 ---
 

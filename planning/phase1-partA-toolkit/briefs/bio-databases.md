@@ -8,7 +8,7 @@ shared, rate-limited, third-party-operated services an unattended campaign can g
 ## Identity
 - **Version / release examined:** no refcode in `impress-a-refcodes/` for any of the five — none is a tool this
   project vendors or builds; all are called over the network at whatever version the operator currently runs.
-  One piece of *executable* evidence exists in-repo: `/home/mason/exdrive/rad/impress-a-refcodes/tools/boltz/src/boltz/data/msa/mmseqs2.py`
+  One piece of *executable* evidence exists in-repo: `<workspace>/impress-a-refcodes/tools/boltz/src/boltz/data/msa/mmseqs2.py`
   is Boltz's actual client for `api.colabfold.com` (attributed in its own header comment to
   `https://github.com/sokrypton/ColabFold/blob/main/colabfold/colabfold.py`) — read in full and cited below,
   since it is the only place in this toolkit sweep where a real client's retry/backoff behavior against one of
@@ -360,9 +360,9 @@ interactive-scale MSA demand, rather than as break-glass options discovered only
 returning `RATELIMIT`.
 
 ## Sources
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/boltz/src/boltz/data/msa/mmseqs2.py` (read in full;
+- `<workspace>/impress-a-refcodes/tools/boltz/src/boltz/data/msa/mmseqs2.py` (read in full;
   verified endpoints, status values, retry/backoff logic, auth mechanisms)
-- `/home/mason/exdrive/rad/impress-a-refcodes/tools/boltz/docs/prediction.md` (verified: `--use_msa_server`,
+- `<workspace>/impress-a-refcodes/tools/boltz/docs/prediction.md` (verified: `--use_msa_server`,
   `--msa_server_url` default, `--msa_pairing_strategy`, authentication flag documentation lines 167-169, 254-287)
 - `briefs/boltz.md`, `briefs/chai.md`, `briefs/mmseqs2.md`, `briefs/foldseek.md`, `briefs/alphafold.md` (this
   project's own briefs — cited for cross-references and the MMseqs2/AF2-family staging-size figures reused here)

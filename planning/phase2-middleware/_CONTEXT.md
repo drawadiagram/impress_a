@@ -67,7 +67,7 @@ say that plainly with file-level evidence. A refutation backed by code is more v
 - **M7** Is P4 external submission expressible through a backend, or does it need a separate path?
 
 ## Ground rules
-- Reference code is **READ-ONLY**: `/home/mason/exdrive/rad/impress-a-refcodes/middleware/`. Never modify it.
+- Reference code is **READ-ONLY**: `<workspace>/impress-a-refcodes/middleware/`. Never modify it.
 - Cite real file paths and quote real code. Paths must resolve on disk.
 - Distinguish **verified from source** vs. **inferred**. Say when something is undocumented or immature.
 - Version numbers matter: note them. `flowgentic` and `radical.adr` are both at 0.1.0 — if they are early,

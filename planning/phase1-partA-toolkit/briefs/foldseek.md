@@ -4,7 +4,7 @@
 
 ## Identity
 - **Version / release examined:** refcode HEAD at commit `463739e` (2026-09-09); `git describe` in the refcode resolves to `10-941cd33-385-g463739e0` (submodule tag history is noisy — treat the commit hash as ground truth). `project(foldseek C CXX)` in `CMakeLists.txt` line 8.
-- **Provenance:** Steinegger Lab (Seoul National University) / Söding Lab, GPLv3 (`LICENSE.md` — GNU GPL v3, 2007). Refcode path: `/home/mason/exdrive/rad/impress-a-refcodes/tools/foldseek/`. Bundles MMseqs2 as a vendored library at `tools/foldseek/lib/mmseqs` (not a live git submodule in this checkout — `.gitmodules` lists `lib/mmseqs/util/regression` and the ProstT5 ggml-kompute backend as true submodules, but `lib/mmseqs` itself is embedded source).
+- **Provenance:** Steinegger Lab (Seoul National University) / Söding Lab, GPLv3 (`LICENSE.md` — GNU GPL v3, 2007). Refcode path: `<workspace>/impress-a-refcodes/tools/foldseek/`. Bundles MMseqs2 as a vendored library at `tools/foldseek/lib/mmseqs` (not a live git submodule in this checkout — `.gitmodules` lists `lib/mmseqs/util/regression` and the ProstT5 ggml-kompute backend as true submodules, but `lib/mmseqs` itself is embedded source).
 - **Maturity:** production / active research. Actively developed (recent commits add LoL-align, Foldseek-Multimer interface search, StrucTTY terminal viewer). Three Nature-family papers (2023 Nat. Biotechnol., 2023 Nature, 2025 Nat. Methods) plus a Nov 2025 LoL-align preprint.
 
 ## Scientific role
@@ -78,10 +78,10 @@ Pipeline stage(s) occupied: **search / analyze**.
 **Core.** Foldseek is the only practical way to answer "has this backbone been seen before" and "what does the known universe of structures near this fold look like" at the speed an autonomous loop needs — alternatives (manual PDB browsing, full TM-align all-vs-all) do not scale. Its CPU-only fallback on Frontier/Aurora is a real cost but not a blocker: search jobs are P2/short-lived, and the GPU path is a pure accelerant, not a requirement for correctness. The vendored MMseqs2 (covered separately in `mmseqs2.md`) makes this refcode a two-for-one: Foldseek for structural search, MMseqs2 (same binary tree) for the sequence-search and MSA-generation role.
 
 ## Sources
-- Refcode: `/home/mason/exdrive/rad/impress-a-refcodes/tools/foldseek/README.md` (quoted throughout, lines cited inline)
-- Refcode: `/home/mason/exdrive/rad/impress-a-refcodes/tools/foldseek/CMakeLists.txt` (ENABLE_CUDA, lines 8-17, 105-109)
-- Refcode: `/home/mason/exdrive/rad/impress-a-refcodes/tools/foldseek/LICENSE.md` (GPLv3)
-- Refcode: `/home/mason/exdrive/rad/impress-a-refcodes/tools/foldseek/Dockerfile` (official container)
+- Refcode: `<workspace>/impress-a-refcodes/tools/foldseek/README.md` (quoted throughout, lines cited inline)
+- Refcode: `<workspace>/impress-a-refcodes/tools/foldseek/CMakeLists.txt` (ENABLE_CUDA, lines 8-17, 105-109)
+- Refcode: `<workspace>/impress-a-refcodes/tools/foldseek/LICENSE.md` (GPLv3)
+- Refcode: `<workspace>/impress-a-refcodes/tools/foldseek/Dockerfile` (official container)
 - Foldseek GitHub: https://github.com/steineggerlab/foldseek
 - van Kempen et al., "Fast and accurate protein structure search with Foldseek," Nat. Biotechnol. 2023, https://www.nature.com/articles/s41587-023-01773-0
 - Barrio-Hernandez et al., "Clustering predicted structures at the scale of the known protein universe," Nature 2023, https://www.nature.com/articles/s41586-023-06510-w (source for AFDB50 clustering scale — inferred/cross-referenced, not read verbatim from Foldseek README)
